@@ -1,0 +1,65 @@
+============================================================================
+=================== HADOOP =================================================
+$HADOOP_HOME/sbin/start-all.sh
+$HADOOP_HOME/sbin/start-dfs.sh
+
+==============================================================================
+========== LAUNCH  NIFI LOGIN INFOS ==========================================
+# Nifi start
+
+./nifi.sh start
+
+# infois pour se loger sur nifi
+
+Generated Username=  7873be5c-aae2-4ef4-bf5c-34d98fb3eb4d
+Generated Password=  A6Vd15h7w78MeB2rJjtYx+UPE3PM/SOr
+./bin/nifi.sh set-single-user-credentials afdel 478947894789
+
+================================================================================
+=========== LAUNCH  SPARK-SHELL ================================================
+#Lancer spark-shell avec les config
+
+path = hadoop@afdelk:~/spark/conf
+
+spark-shell --name HIVE_SPARK --driver-memory 1g --executor-memory 1g --executor-cores 1 --driver-java-options "-Dhive.metastore.uris=thrift://afdelk:9083" --conf spark.driver.port=4040 --conf spark.driver.bindAddress=127.0.0.1 --conf "spark.sql.catalogImplementation=hive" --conf "spark.sql.crossJoin.enabled=true"
+
+=================================================================================
+======================== LAUNCH PYSPARK =========================================
+path = /park/conf
+
+pyspark --conf spark.driver.port=4040 --conf spark.driver.bindAddress=127.0.0.1
+
+
+=================================================================================
+======== LAUNCH  HIVE ===========================================================
+#modifier l'adresse ip de la machine avant de lancer hive
+
+path = /apache-hive-3.1.3-bin/bin
+sudo nano /etc/hosts
+
+
+================================================================================
+======== MYSQL SERVER ==========================================================
+#lancer mysql server
+
+path = /hadoop
+mysql -u root -p
+
+================================================================================
+============ CONFIG DBCP CONNECTOR MYSQL NIFI ==================================
+
+
+|property                                       Value
+|----------------------------------------------------------------------------------------------------------------|
+_________________________________________________________________________________________________________________
+|Database Connection URL                      jdbc:mysql://localhost:3306/TP_MASTER                           
+_________________________________________________________________________________________________________________
+|Database Driver Class Name                   com.mysql.cj.jdbc.Driver                                       
+_________________________________________________________________________________________________________________
+|Database Driver Location(s)                  /home/hadoop/nifi-1.26.0/lib/mysql-connector-java-8.0.26.jar   
+_________________________________________________________________________________________________________________
+|Database User                                your database user name in mysql
+_________________________________________________________________________________________________________________
+Password                                      your user password in mysql
+|----------------------------------------------------------------------------------------------------------------|
+admin:///home/hadoop/mysql-connector-java-8.0.26
