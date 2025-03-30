@@ -15,7 +15,7 @@ Hive pour l'analyse SQL et la création de vues agrégées.
 🔧 Stack Technique :
 MySQL · Apache NiFi · HDFS · PySpark · Hive · Cron
 
-🚀 Fonctionnalités Clés :
+### 🚀 Fonctionnalités Clés :
 
 Ingestion flexible : Chargement de fichiers CSV découpés dans MySQL, puis transfert vers HDFS via NiFi.
 
@@ -35,7 +35,7 @@ Automatisation :
 
 Orchestration via cron (exécution périodique des jobs Spark et NiFi).
 
-📊 Résultats Concrets :
+### 📊 Résultats Concrets :
 
 Optimisation du stockage : Architecture multi-couches (raw → staging → refined).
 
