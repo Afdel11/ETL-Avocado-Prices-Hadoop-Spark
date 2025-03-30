@@ -1,6 +1,6 @@
 # Pipeline Big Data Avocado : Ingestion, Traitement et Analyse avec MySQL, NiFi, Spark et Hive
 
-## Description Synthétique (pour README.md ou présentation)
+## Description 
 🥑 Pipeline Big Data pour l'Analyse des Prix des Avocats
 Ce projet démontre un workflow complet de traitement de données depuis l'ingestion initiale (fichiers CSV) jusqu'à l'analyse avancée, en utilisant une stack Big Data moderne :
 
