@@ -54,7 +54,7 @@ Ce projet implémente une solution Big Data complète pour traiter et analyser l
 ### Installation
 
 # Cloner le dépôt
-git clone [https://github.com/votre-repo/avocado-bigdata.git](https://github.com/Afdel11/ETL-Avocado-Prices-Hadoop-Spark.git)
+git clone [https://github.com/Afdel11/ETL-Avocado-Prices-Hadoop-Spark.git]
 
 # Créer les répertoires HDFS
 hdfs dfs -mkdir /raw_avocado
