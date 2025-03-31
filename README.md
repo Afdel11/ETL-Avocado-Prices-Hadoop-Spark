@@ -77,7 +77,7 @@ hdfs dfs -mkdir /refine_avocado
 
 - Réduction du temps de traitement de plusieurs heures à quelques minutes
 
-##🤝 Contributeurs
+## 🤝 Contributeurs
 - Afdel Desmond KOMBOU
 
 - Papa Yeriba NIANG
