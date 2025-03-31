@@ -1,42 +1,62 @@
-# Pipeline Big Data Avocado : Ingestion, Traitement et Analyse avec MySQL, NiFi, Spark et Hive
+# 🥑 Pipeline Big Data pour l'Analyse des Marchés d'Avocats
 
-## Description 
-🥑 Pipeline Big Data pour l'Analyse des Prix des Avocats
-Ce projet démontre un workflow complet de traitement de données depuis l'ingestion initiale (fichiers CSV) jusqu'à l'analyse avancée, en utilisant une stack Big Data moderne :
+**Une solution complète de traitement de données pour l'analyse du marché des avocats utilisant l'écosystème Hadoop**
 
-MySQL pour le stockage initial,
+![Architecture du Pipeline](media/pipeline_arch.png) *Diagramme d'architecture exemple*
 
-Apache NiFi pour l'automatisation des flux,
+## 📌 Aperçu du Projet
+Ce projet implémente une solution Big Data complète pour traiter et analyser les données de marché des avocats depuis des fichiers CSV jusqu'à des insights actionnables. Le pipeline intègre :
+- **MySQL** pour le stockage initial des données
+- **Apache NiFi** pour l'automatisation de l'ingestion
+- **HDFS** pour le stockage distribué
+- **Spark** pour la transformation des données
+- **Hive** pour les requêtes de type SQL
+- **Cron** pour l'orchestration du workflow
 
-HDFS/Spark pour le traitement distribué,
+## 🛠️ Stack Technique
+| Composant       | Technologie Utilisée |
+|-----------------|----------------------|
+| Ingestion       | Apache NiFi          |
+| Stockage        | MySQL, HDFS          |
+| Traitement      | PySpark              |
+| Data Warehouse  | Hive                 |
+| Orchestration   | Cron                 |
 
-Hive pour l'analyse SQL et la création de vues agrégées.
+## 📂 Étapes du Pipeline
+1. **Préparation des Données**
+   - Découpage du CSV source en partitions
+   - Chargement dans la base MySQL
 
-🔧 Stack Technique :
-MySQL · Apache NiFi · HDFS · PySpark · Hive · Cron
+2. **Ingestion Automatisée**
+   - Workflow NiFi extrait les données de MySQL
+   - Stockage des fichiers bruts dans HDFS (`/raw_avocado`)
 
-### 🚀 Fonctionnalités Clés :
+3. **Traitement des Données**
+   - Job Spark #1 : Calcule les métriques de volume → Table Hive
+   - Job Spark #2 : Enrichit avec des features de date → Stockage HDFS raffiné (`/refine_avocado`)
 
-Ingestion flexible : Chargement de fichiers CSV découpés dans MySQL, puis transfert vers HDFS via NiFi.
+4. **Analyse**
+   - Tables externes Hive pour accès SQL
+   - Vues agrégées (ex : `volume_per_month`)
 
-Traitement scalable :
+5. **Automatisation**
+   - NiFi programmé toutes les 5 minutes
+   - Jobs Spark planifiés via Cron
 
-Calcul du volume total par fichier avec Spark.
+## 🚀 Guide de Démarrage
+### Prérequis
+- Cluster Hadoop
+- MySQL 8.0+
+- Apache NiFi
+- Spark 3.x
+- Hive 3.x
 
-Enrichissement des données (extraction jour/mois depuis la date).
+### Installation
+```bash
+# Cloner le dépôt
+git clone https://github.com/votre-repo/avocado-bigdata.git
 
-Analyse intelligente :
-
-Création de tables/vues Hive pour requêter les données nettoyées.
-
-Agrégation des volumes par mois (vue volume_per_month).
-
-Automatisation :
-
-Orchestration via cron (exécution périodique des jobs Spark et NiFi).
-
-### 📊 Résultats Concrets :
-
-Optimisation du stockage : Architecture multi-couches (raw → staging → refined).
-
-Monitoring : Logs et vérifications à chaque étape pour garantir l'intégrité des données.
+# Créer les répertoires HDFS
+hdfs dfs -mkdir /raw_avocado
+hdfs dfs -mkdir /staging_avocado
+hdfs dfs -mkdir /refine_avocado
